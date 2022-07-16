@@ -14,12 +14,12 @@ const db = admin.firestore();
 
 //Funzione utile a salvare i file all'interno del database.
 //Salva ID utente, nome utente, messaggio e orario in cui ha inviato il messaggio.
-function saveToDatabase(collection, ID, name, message, timestamp){
+function saveToDatabase(collection, ID, name, message, time){
   db.collection(collection).add({
     ID: ID,
     name: name,
     message: message,
-    timestamp: timestamp
+    time: time
   });
 }
 
@@ -49,40 +49,40 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
   //le 5 cose che percepisce con la vista.
   function saveMessageVista(agent) {
     const name = bodyReq.originalDetectIntentRequest.payload.data.from.first_name;
-    const timestamp = new Date();
-    saveToDatabase("vista", bodyReq.originalDetectIntentRequest.payload.data.from.id, name, bodyReq.queryResult.queryText, timestamp);
+    const time = new Date();
+    saveToDatabase("vista", bodyReq.originalDetectIntentRequest.payload.data.from.id, name, bodyReq.queryResult.queryText, time);
   }
   
   //Funzione che salva i messaggi dell'utente dove elenca
   //le 4 cose che percepisce con il tatto.
   function saveMessageTatto(agent) {
     const name = bodyReq.originalDetectIntentRequest.payload.data.from.first_name;
-    const timestamp = new Date();
-    saveToDatabase("tatto", bodyReq.originalDetectIntentRequest.payload.data.from.id, name, bodyReq.queryResult.queryText, timestamp);
+    const time = new Date();
+    saveToDatabase("tatto", bodyReq.originalDetectIntentRequest.payload.data.from.id, name, bodyReq.queryResult.queryText, time);
   }
   
   //Funzione che salva i messaggi dell'utente dove elenca
   //le 3 cose che percepisce con l'udito.
   function saveMessageUdito(agent) {
     const name = bodyReq.originalDetectIntentRequest.payload.data.from.first_name;
-    const timestamp = new Date();
-    saveToDatabase("udito", bodyReq.originalDetectIntentRequest.payload.data.from.id, name, bodyReq.queryResult.queryText, timestamp);
+    const time = new Date();
+    saveToDatabase("udito", bodyReq.originalDetectIntentRequest.payload.data.from.id, name, bodyReq.queryResult.queryText, time);
   }
   
   //Funzione che salva i messaggi dell'utente dove elenca
   //le 2 cose che percepisce con l'olfatto.
   function saveMessageOlfatto(agent) {
     const name = bodyReq.originalDetectIntentRequest.payload.data.from.first_name;
-    const timestamp = new Date();
-    saveToDatabase("olfatto", bodyReq.originalDetectIntentRequest.payload.data.from.id, name, bodyReq.queryResult.queryText, timestamp);
+    const time = new Date();
+    saveToDatabase("olfatto", bodyReq.originalDetectIntentRequest.payload.data.from.id, name, bodyReq.queryResult.queryText, time);
   }
   
   //Funzione che salva i messaggi dell'utente dove elenca
   //le cosa che percepisce con il gusto.
   function saveMessageGusto(agent) {
     const name = bodyReq.originalDetectIntentRequest.payload.data.from.first_name;
-    const timestamp = new Date();
-    saveToDatabase("gusto", bodyReq.originalDetectIntentRequest.payload.data.from.id, name, bodyReq.queryResult.queryText, timestamp);
+    const time = new Date();
+    saveToDatabase("gusto", bodyReq.originalDetectIntentRequest.payload.data.from.id, name, bodyReq.queryResult.queryText, time);
   }
   
   function fallback(agent) {
